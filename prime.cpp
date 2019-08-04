@@ -5,10 +5,10 @@ using namespace std;
 
 bool isSmaller(string str1, string str2)
 {
-	int n1 = str1.length(), n2 = str2.length();
+	int n1 = str1.length() ,n2 = str2.length();
 
 	if (n1 < n2)
-	return true;
+	return  true;
 	if (n2 < n1)
 	return false;
 
@@ -20,7 +20,7 @@ bool isSmaller(string str1, string str2)
 
 	return false;
 }
-bool small2(string str1, string str2)
+bool small(string str1, string str2)
 {
 	int n1 = str1.length(), n2 = str2.length();
 
@@ -45,7 +45,8 @@ string add_one(string a){
 	carry=sum/10;
 	a[0]=(sum%10+'0');
 	for(int i=1;i<n;i++){
-		if(carry==0) {reverse(a.begin(),a.end()); return a;}
+		if(carry==0)
+		{reverse(a.begin(),a.end()); return a;}
 		else{
 			sum=(a[i]-'0')+carry;
 			a[i]=(sum%10+'0');
@@ -67,35 +68,35 @@ string Diff(string str1, string str2)
 	reverse(str1.begin(), str1.end());
 	reverse(str2.begin(), str2.end());
 
-	int carry = 0;
+	int c = 0;
 
 	for (int i=0; i<n2; i++)
 	{
 
-		int sub = ((str1[i]-'0')-(str2[i]-'0')-carry);
+		int sub = ((str1[i]-'0')-(str2[i]-'0')-c);
 
 		if (sub < 0)
 		{
 			sub = sub + 10;
-			carry = 1;
+			c = 1;
 		}
 		else
-			carry = 0;
+			c = 0;
 
 		str.push_back(sub + '0');
 	}
 
 	for (int i=n2; i<n1; i++)
 	{
-		int sub = ((str1[i]-'0') - carry);
+		int sub = ((str1[i]-'0') - c);
 
 		if (sub < 0)
 		{
 			sub = sub + 10;
-			carry = 1;
+			c = 1;
 		}
 		else
-			carry = 0;
+			c = 0;
 
 		str.push_back(sub + '0');
 	}
@@ -114,16 +115,16 @@ string div(string a , string b){
 	string r=a.substr(0,b.size());
 	if(isSmaller(r,b)) {r+=a[b.size()];}
 	int sz=r.size();
-	while(small2(b,r)){
+	while(small(b,r)){
 		int i=0;
-		while(small2(b,r)){
+		while(small(b,r)){
 			r=Diff(b,r);
 			int count=0;
 			for(int j=0;j<r.size();j++){
 				if(r[j]!='0') break;
 				else count++;
 			}
-			if(count<r.size()) {r=r.substr(count,r.size()-count);}
+			if(count < r.size()) {r=r.substr(count,r.size()-count);}
 			else{ r="";}
 			i++;
 		}
