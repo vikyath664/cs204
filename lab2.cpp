@@ -103,7 +103,9 @@ int del(int a,int b,Node** str)
         temp=*str;
 	temp2=temp->next;
 	if(temp==NULL) return 0;
-	if(temp!=NULL && temp2==NULL && c=temp->x && d=temp->y) free(temp);
+	c=temp2->x;
+	d=temp2->y;
+	if(temp!=NULL && temp2==NULL && c==a && d==b) free(temp);
 	while(temp2!=NULL)
 	{
 		c=temp2->x;
