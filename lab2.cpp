@@ -6,7 +6,7 @@ class Node
 	int x,y; 
 	Node *next; 
 }; 
-void push(Node** head_ref, int new_data)  
+/*void push(Node** head_ref, int new_data)  
 {  
    
     Node* new_node = new Node(); 
@@ -16,59 +16,60 @@ void push(Node** head_ref, int new_data)
     new_node->next = (*head_ref);  
   
     (*head_ref) = new_node;  
-} 
+} */
 /*1>addstart(x,y)
 2>delfirst()
 3>del(x,y)
 4>search(d)
 5>search(x,y)
 6>length()*/
-Node* addstart(int a,int b,Node** str)
+int addstart(int a,int b,Node** str)
 {
 	Node* new_node = new Node();
 	Node* temp;
 	new_node->x=a;
 	new_node->y=b;
-	temp=str->next;
+	temp=*str;
 	new_node->next=temp;
-	str->next=new_node;
-	return str;
+	*str=new_node;
+	return 0;
 }
 void delfirst(Node** str)
 {
-	if(str->next==NULL)
+	Node* temp;
+	if(*str==NULL)
 		cout<<"no node";
 	else
 	{
-		Node* temp;
-		temp=str->next;
-		str->next=temp->next;
+		
+		temp=*str;
+		*str=temp->next;
 		free(temp);
 
 	}
 
 }
-void search(d,Node** str)
+void search(Node** str,float d)
 {
 	int a,b;
 	Node* temp;
-	temp=Node* str;
+	temp=*str;
 	while(temp!=NULL)
 	{
 		a=temp->x;
 		b=temp->y;
 		if((a*a+b*b)<=(d*d))
 		{
-			cout>>"(a,b)"
+			cout<<"(a,b)";
 		}
 		temp=temp->next;
 	}
 }
-bool search(a,b,Node** str)
+bool search(int a,int b,Node** str)
 {
 	int c,d;
 	Node* temp;
-	temp=Node* str;
+	temp=*str;
 	while(temp!=NULL)
 	{
 		c=temp->x;
@@ -87,25 +88,78 @@ int length(Node** str)
 {
 	int i=0;
 	Node* temp;
+	temp=*str;
 	while(temp!=NULL)
 	{
 		i++;
 	}
 	return i;
 }
-void del(a,b,Node** str)
+int del(int a,int b,Node** str)
 {
 	int c,d;
-	Node* temp,temp2;
+	Node* temp;
+	Node* temp2;
+        temp=*str;
 	while(temp!=NULL)
 	{
 		c=temp->x;
 		d=temp->y;
 		if(c==a && d==b)
 		{
-			temp2=temp;
-			
-
+			temp2=temp->next;
+			free(temp);
+                        temp=temp2;
+                        return 1;
 		}
 	}
+return 0;
+}
+int main()
+{
+int i,t,a,b,f;	
+float d;
+cin >>t;
+Node** s;
+*s=NULL;
+for(i=0;i<t;i++)
+{
+	cin>> f;
+	switch(f)
+	{
+		case 1:	
+			cin >>a;
+			cin >>b;
+			addstart(a,b,s);
+			cout<< "c1";
+		break;
+		case 2:						
+			delfirst(s);
+			cout<< "c2";
+		break;
+		case 3:
+			cin >>a;
+			cin >>b;
+			del(a,b,s);
+			cout<< "c3";
+		break;
+		case 4:
+			cin>>d;
+			search(s,d);
+			cout<< "c4";
+		break;
+		case 5:
+			cin >>a;
+			cin >>b;
+			search(a,b,s);
+			cout<< "c5";
+		break;
+		case 6:
+			length(s);
+			cout<< "c6";
+		break;
+		default: cout<< "invalid";
+	}
+}
+return 0;
 }
