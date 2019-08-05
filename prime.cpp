@@ -161,9 +161,9 @@ string div(string a , string b){
 
 bool prime(string a){
 	int n=a.size();
-        n=sqrt(n)+1;
+        n=n/2+1;
 	string b="2";
-	while(b.size()<=(n)&&isSmaller(b,a)){
+	while(b.size()<=n&&isSmaller(b,a)){
 		string r=div(a,b);
 		if(r=="0") return false;
 		b=add_one(b);
