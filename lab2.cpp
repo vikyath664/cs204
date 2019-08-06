@@ -40,7 +40,7 @@ void delfirst(Node** str)
 	}
 
 }
-void search(Node** str,float d)
+void search_d(Node** str,float d)
 {
 	int a,b;
 	Node* temp;
@@ -139,7 +139,7 @@ for(i=0;i<t;i++)
 		break;
 		case 4:
 			cin>>d;
-			search(s,d);
+			search_d(s,d);
 		break;
 		case 5:
 			cin >>a;
