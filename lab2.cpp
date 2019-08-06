@@ -6,23 +6,14 @@ class Node
 	int x,y; 
 	Node *next; 
 }; 
-/*void push(Node** head_ref, int new_data)  
-{  
-   
-    Node* new_node = new Node(); 
- 
-    new_node->data = new_data;  
-  
-    new_node->next = (*head_ref);  
-  
-    (*head_ref) = new_node;  
-} */
-/*1>addstart(x,y)
+/*
+1>addstart(x,y)
 2>delfirst()
 3>del(x,y)
 4>search(d)
 5>search(x,y)
-6>length()*/
+6>length()
+*/
 int addstart(int a,int b,Node** str)
 {
 	Node* new_node = new Node();
@@ -135,32 +126,26 @@ for(i=0;i<t;i++)
 			cin >>a;
 			cin >>b;
 			addstart(a,b,s);
-			cout<< "c1";
 		break;
 		case 2:						
 			delfirst(s);
-			cout<< "c2";
 		break;
 		case 3:
 			cin >>a;
 			cin >>b;
 			del(a,b,s);
-			cout<< "c3";
 		break;
 		case 4:
 			cin>>d;
 			search(s,d);
-			cout<< "c4";
 		break;
 		case 5:
 			cin >>a;
 			cin >>b;
 			search(a,b,s);
-			cout<< "c5";
 		break;
 		case 6:
 			length(s);
-			cout<< "c6";
 		break;
 		default: cout<< "invalid";
 	}
