@@ -85,6 +85,7 @@ int length(Node** str)
 	{
 		i++;
 	}
+	cout<< i;
 	return i;
 }
 int del(int a,int b,Node** str)
@@ -97,7 +98,7 @@ int del(int a,int b,Node** str)
 	if(temp==NULL) return 0;
 	c=temp2->x;
 	d=temp2->y;
-	if(temp!=NULL && temp2==NULL && c==a && d==b) free(temp);
+	if(temp!=NULL && temp2==NULL && c==a && d==b) {free(temp); return 1;}
 	while(temp2!=NULL)
 	{
 		c=temp2->x;
