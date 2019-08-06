@@ -67,12 +67,13 @@ bool search(int a,int b,Node** str)
 		d=temp->y;
 		if(c==a && d==b)
 		{
+			cout<<"true";
 			return true;
 		}
 	temp=temp->next;	
 
 	}
-	if(temp==NULL) return false;
+	if(temp==NULL) {cout<<"false"; return false;}
 
 }
 int length(Node** str)
