@@ -89,30 +89,37 @@ int length(Node** str)
 	cout<< i<<"\n";
 	return i;
 }
-int del(int a,int b,Node** str)
-{
-	int c,d;
-	Node* temp;
-	Node* temp2;
-        temp=*str;
-	temp2=temp->next;
-	if(temp==NULL) return 0;
-	c=temp2->x;
-	d=temp2->y;
-	if(temp!=NULL && temp2==NULL && c==a && d==b) {free(temp); return 1;}
-	while(temp2!=NULL)
-	{
-		c=temp2->x;
-		d=temp2->y;
-		if(c==a && d==b)
-		{
-			temp->next=temp2->next;
-			free(temp2);
-                        return 1;
-		}
+ void del(int x,int y,Node** str)
+ {
+	Node* head=*str;
+        if(*str==NULL)
+	{ 
+		cout<<-1; 
+		return;
 	}
-return 0;
-}
+ 	if(head->x==x && head->y==y) 
+	{ 
+		delfirst(str);
+		return;
+	}
+ 	Node *temp=head;
+ 	Node *prev=NULL;
+        int flag=0;
+ 	while(temp->next!=NULL)
+ 	{
+ 		prev=temp;
+ 		temp=temp->next;
+ 		if(temp->x==x && temp->y==y) 
+ 		{
+                   prev->next=temp->next;
+                   free(temp);
+                   flag=1;
+                   cout<<0<<"\n"; break;   
+ 		}
+ 	}
+   if(flag==0) cout<<-1;
+   
+ }
 int main()
 {
 int i,t,a,b,f;	
