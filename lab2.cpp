@@ -51,7 +51,7 @@ void search(Node** str,float d)
 		b=temp->y;
 		if((a*a+b*b)<=(d*d))
 		{
-			cout<<"(a,b)";
+			cout<<"("<<a<<","<<b<<")";
 		}
 		temp=temp->next;
 	}
