@@ -1,36 +1,78 @@
-#include<iostream>
-#include<stack>
+#include<bits/stdc++.h>
+
 using namespace std;
 
-int main()
+bool ismatching(string s1)
 {
-int i,t;
-char a;
-stack <char> s;
-cin >> t;
-for(i=0;i<t;i++)
-{
-	cin >> a;
-	if(a==')' || a==']' || a=='}') cout << "no\n"; continue;
-	s.push(a);
-	while(a!='\0')
-	{
-		cin >> a;
-		if(a=='|')
-		{
-			if(s.top=='|') s.pop();
-			if(s.empty()) s.push(a); continue;
-			else() cout << "no\n" break;
-		}
-		if(a==')' || a==']' || a=='}')
-		{
-			if(a==')' && s.top()=='(') s.pop();
-			elseif(a=='}' && s.top()=='{') s.pop();
-			elseif(a==']' && s.top()=='[') s.pop();
-			else() cout <<"no\n" break;
-		}
+stack<char> a;
+int i=0;
+char x;
+for(i=0;i<s1.length();i++)
+{ 
+     if(s1[i]=='('||s1[i]=='['||s1[i]=='{'||s1[i]=='<')
+     {a.push(s1[i]);
+     continue;}
 
-	}
+     if(s1[i]=='|'&&a.empty())
+     {a.push(s1[i]);
+     continue;}
+
+  if(s1[i]=='|'&& !a.empty())
+  {x=a.top();
+  if(x=='|')
+  {a.pop();}
+  if(x!='|')
+  {a.push('|');}}
+
+     if((s1[i]=='}'||s1[i]==')'||s1[i]==']'||s1[i]=='>')&& a.empty())
+     {return false;
+     break;}
+
+  if(s1[i]=='}')
+  {x=a.top();
+  if(x=='{')
+  a.pop();
+  if(x!='{')
+  {return false;
+  break;}}
+
+   if(s1[i]==')')
+   {x=a.top();
+   if(x=='(')
+   a.pop();
+   if(x!='(')
+   {return false;
+   break;}}
+
+  if(s1[i]=='>')
+  {x=a.top();
+  if(x=='<')
+  a.pop();
+  if(x!='<')
+  {return false;
+  break;}}
+
+   if(s1[i]==']')
+   {x=a.top();
+   if(x=='[')
+   a.pop();
+   if(x!='[')
+   {return false;
+   break;}}
+
 }
+return(a.empty());}
+
+
+  int main()
+  {int n,i,j;
+  cin>>n;
+  for(i=0;i<n;i++)
+  {string s;
+  cin>>s;
+  if (ismatching(s)) 
+        cout << "YES"<<endl; 
+  else
+        cout << "NO"<<endl; }
 return 0;
 }
