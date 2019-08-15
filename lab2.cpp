@@ -1,168 +1,168 @@
-#include <bits/stdc++.h> 
-using namespace std; 
-class Node 
-{ 
-	public: 
-	int x,y; 
-	Node *next; 
-}; 
-/*
-1>addstart(x,y)
-2>delfirst()
-3>del(x,y)
-4>search(d)
-5>search(x,y)
-6>length()
-*/
-int addstart(int a,int b,Node** str)
+#include<bits/stdc++.h>
+#include<iostream>
+using namespace std;
+struct node
 {
-	Node* new_node = new Node();
-	Node* temp;
-	new_node->x=a;
-	new_node->y=b;
-	temp=*str;
-	new_node->next=temp;
-	*str=new_node;
+    int x;
+    int y;
+    struct node* next;
+};
+
+struct node* head = NULL;
+int addFirst(int x, int y)
+{
+    struct node* b = NULL;
+    b = new node();
+    b->x = x;
+    b->y = y;
+    b->next=NULL;
+    if(head == NULL)
+    {
+ 	    head = b;
+	    return 0;
+    }
+    else
+    {
+	    b->next = head;
+	    head = b;
+	    return 0;
+    }
+}
+
+int DelFirst()
+{
+    struct node* b=head;
+    if(head == NULL){
+    cout<<"-1\n";
+    return -1;
+}
+ else
+{
+	head = head->next;
+	delete b;
 	return 0;
 }
-void delfirst(Node** str)
-{
-	Node* temp;
-	if(*str==NULL)
-		cout<<"-1";
-	else
-	{
-		
-		temp=*str;
-		*str=temp->next;
-		free(temp);
-
-	}
-
 }
-void search_d(Node** str,float d)
+int Length()
 {
-	int a,b,k;
-	k=0;
-	Node* temp;
-	temp=*str;
-	while(temp!=NULL)
-	{
-		a=temp->x;
-		b=temp->y;
-		if((a*a+b*b)<=(d*d))
-		{
-			cout<<"("<<a<<","<<b<<")";
-			k++;
-		}
-		temp=temp->next;
-	}
-	if(k==0) cout<<"-1";
-	else cout<< k;
+    int z =0 ;
+    struct node* ptr = head;
+    while(ptr != NULL)
+    {
+	    z++;
+	    ptr=ptr->next;
+    }
+	return z;
 }
-bool search(int a,int b,Node** str)
-{
-	int c,d;
-	Node* temp;
-	temp=*str;
-	while(temp!=NULL)
-	{
-		c=temp->x;
-		d=temp->y;
-		if(c==a && d==b)
-		{
-			cout<<"true";
-			return true;
-		}
-	temp=temp->next;	
 
-	}
-	if(temp==NULL) {cout<<"false"; return false;}
-
-}
-int length(Node** str)
+bool Search(int x, int y)
 {
-	int i=0;
-	Node* temp;
-	temp=*str;
-	while(temp!=NULL)
-	{
-		i++;
-		temp=temp->next;
-	}
-	cout<< i<<"\n";
-	return i;
+struct node* ptr = head;
+while(ptr != NULL)
+{
+    if(ptr->x == x && ptr->y ==y)
+    {
+	    return true;
+    }
+	ptr=ptr->next;
 }
- void del(int x,int y,Node** str)
- {
-	Node* head=*str;
-        if(*str==NULL)
-	{ 
-		cout<<-1; 
-		return;
-	}
- 	if(head->x==x && head->y==y) 
-	{ 
-		delfirst(str);
-		return;
-	}
- 	Node *temp=head;
- 	Node *prev=NULL;
-        int flag=0;
- 	while(temp->next!=NULL)
- 	{
- 		prev=temp;
- 		temp=temp->next;
- 		if(temp->x==x && temp->y==y) 
- 		{
-                   prev->next=temp->next;
-                   free(temp);
-                   flag=1;
-                   cout<<0<<"\n"; break;   
- 		}
- 	}
-   if(flag==0) cout<<-1;
-   
- }
+return false;
+}
+
+int Search_d(float d)
+{
+int a = 0;
+struct node* ptr = head;
+while(ptr != NULL)
+{
+    int y = ptr->x;
+    int z = ptr->y;
+    if(y*y+z*z <= d*d)
+    {
+	    a++;
+    }
+	ptr=ptr->next;
+}
+if(a == 0){a = -1;}
+return a;
+}
+
+int Del(int x, int y)
+{
+    struct node* b = head;
+    struct node* temp = NULL;
+    if(b->x && b->y == y)
+    {
+	    head = head->next;
+	    delete b;
+	    return 0;
+    }
+    while((b->x != x || b->y != y) && b->next != NULL)
+    {
+	    temp = b;
+	    b= b->next;
+    }
+	
+    if(b->x == x && b->y == y){
+    temp->next = b->next;
+    delete b;
+    }
+    else
+    {   
+        cout<<"-1";
+	    return -1;
+    }
+	return 0;
+}
+
 int main()
 {
-int i,t,a,b,f;	
-float d;
-cin >>t;
-Node** s;
-*s=NULL;
-for(i=0;i<t;i++)
+ long long t;
+ cin>>t;
+ while(t--)
 {
-	cin>> f;
-	switch(f)
+ long long x;
+ cin>>x;
+ if(x == 1)
+{
+ int y, z;
+ cin>>y>>z;
+ addFirst(y, z);
+}
+ else if(x==2)
+{
+ DelFirst();
+}
+ else if(x == 3)
+{
+	int y, z;
+	cin>>y>>z;
+	int k = Del(y, z);
+	if(k){cout<<k<<endl;}
+}
+ else if(x == 4)
+{
+	float d;
+	cin>>d;
+	int k=Search_d(d);
+	cout<<k<<endl;
+}
+ else if(x == 5)
+{
+	int y, z;
+	cin>>y>>z;
+	if(Search(y, z))
 	{
-		case 1:	
-			cin >>a;
-			cin >>b;
-			addstart(a,b,s);
-		break;
-		case 2:						
-			delfirst(s);
-		break;
-		case 3:
-			cin >>a;
-			cin >>b;
-			del(a,b,s);
-		break;
-		case 4:
-			cin>>d;
-			search_d(s,d);
-		break;
-		case 5:
-			cin >>a;
-			cin >>b;
-			search(a,b,s);
-		break;
-		case 6:
-			length(s);
-		break;
-		default: cout<< "invalid";
+		cout<<"True\n";
+	}
+	 else
+	{
+		cout<<"False\n";
 	}
 }
-return 0;
+	else if(x==6)
+	{
+		cout<<Length()<<endl;
+	}
+}
 }
