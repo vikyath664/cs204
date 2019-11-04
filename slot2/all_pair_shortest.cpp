@@ -2,7 +2,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define V 4
-#define INF 10000000 
+#define INF 99999
 void floydWarshall(int graph[][V],int k[][V])
 {
 	int dist[V][V];
