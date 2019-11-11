@@ -20,7 +20,7 @@ void printlist(node *head){
     node *temp;
     temp=head;
     while(temp!=NULL){
-        cout<< temp->data << "";
+        cout<< temp->data << "\n";
         temp=temp->next;
     }
 
@@ -85,7 +85,6 @@ int main(){
 
     node *head=NULL;
     int choice=1,x;
-    while(choice){
         cout << "1. Insert at head\n";
         cout << "2. Delete at head\n";
         cout << "3. Delete at tail\n";
@@ -93,14 +92,16 @@ int main(){
         cout << "5. Print Linked List\n";
         cout << "6. Search for a value in linked list\n";
         cout << "0.Exit\n";
-        cout << "enter your choice\n";
+        
+    while(choice){
+	cout << "enter your choice\n";
         cin >> choice;
 
         switch(choice){
         case 0:
             break;
         case 1:
-            cout << "enter a value to insert";
+            cout << "enter a value to insert\n";
             cin >> x;
             addstart(&head,x);
             break;
